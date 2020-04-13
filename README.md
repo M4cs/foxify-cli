@@ -13,6 +13,7 @@ As of Firefox 57 (the Quantum Update), Mozilla has enabled custom user customiza
 
 Foxify was heavily inspired by the command-line program [Spiceify for Spotify](https://github.com/khanhas/spicetify-cli), which offers similiar features but for Spotify!
 
+<a href="https://www.reddit.com/r/FirefoxCSS/comments/fz8h2o/moonlight_userchrome/"><img src="https://i.redd.it/rma9z4itq7s41.png"  alt="img" align="right" width="400px"></a>
 ### Where To Find Themes:
 
 #### FirefoxCSS Reddit: [Link](https://www.reddit.com/r/FirefoxCSS/)
@@ -23,6 +24,7 @@ Foxify was heavily inspired by the command-line program [Spiceify for Spotify](h
 
 ### Requirements:
 
+<a href="https://www.reddit.com/r/nordtheme/comments/g0mnyt/nordic_firefox_theme/"><img src="https://i.redd.it/omdp7nyz6ms41.png" alt="img" align="right" width="400px"></a>
 **OS:** Windows, Mac, Linux
 
 **Software Reqs:**
@@ -32,7 +34,7 @@ Foxify was heavily inspired by the command-line program [Spiceify for Spotify](h
   
 ### Getting Started:
 
-**Installing Foxify:***
+**Installing Foxify:**
 
 To install Foxify you can simply use the Python Pip package manager. 
 

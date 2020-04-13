@@ -2,5 +2,5 @@ colorama==0.4.1
 tqdm==4.33.0
 fuzzywuzzy==0.18.0
 requests==2.20.1
-psutil==5.6.2
+psutil==5.6.6
 ruamel.base==1.0.0

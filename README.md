@@ -13,6 +13,14 @@ As of Firefox 57 (the Quantum Update), Mozilla has enabled custom user customiza
 
 Foxify was heavily inspired by the command-line program [Spiceify for Spotify](https://github.com/khanhas/spicetify-cli), which offers similiar features but for Spotify!
 
+## Features:
+
+ - #### Easy Theme Management for Firefox Themes
+ - #### Safe Backups and Restores of Themes
+ - #### Easily Remove Custom Themes Entirely
+ - #### Easy To Use Commands
+ - #### Command Suggestions When Entering Incorrect Arguments
+
 <a href="https://www.reddit.com/r/FirefoxCSS/comments/fz8h2o/moonlight_userchrome/"><img src="https://i.redd.it/rma9z4itq7s41.png"  alt="img" align="right" width="400px"></a>
 ### Where To Find Themes:
 

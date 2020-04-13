@@ -13,6 +13,14 @@ As of Firefox 57 (the Quantum Update), Mozilla has enabled custom user customiza
 
 Foxify was heavily inspired by the command-line program [Spiceify for Spotify](https://github.com/khanhas/spicetify-cli), which offers similiar features but for Spotify!
 
+### Where To Find Themes:
+
+#### FirefoxCSS Reddit: [Link](https://www.reddit.com/r/FirefoxCSS/)
+
+#### UserChrome Tweaks: [Link](https://github.com/Timvde/UserChrome-Tweaks)
+
+#### Firefox CSS Hacks: [Link](https://github.com/MrOtherGuy/firefox-csshacks)
+
 ### Requirements:
 
 **OS:** Windows, Mac, Linux

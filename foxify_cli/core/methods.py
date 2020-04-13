@@ -163,14 +163,14 @@ def restore():
                     os.remove(os.path.join(os.path.realpath(profile_dir + '/chrome'), file))
             info("Starting Restore Process...")
             for file in tqdm(os.listdir(os.path.realpath(profile_dir + '/chrome_backup')), ncols=35, smoothing=True, bar_format=Fore.LIGHTCYAN_EX + Style.BRIGHT + "[PROGRESS] " + Fore.RESET + Style.RESET_ALL + '{n_fmt}/{total_fmt} | {bar}'):
-                if os.path.isdir(os.path.join(os.path.realpath(CONFIG_PATH + '/chrome_backup'), file)):
-                    shutil.copytree(os.path.join(os.path.realpath(CONFIG_PATH + '/chrome_backup'), file), os.path.realpath(profile_dir + '/chrome' + file))
+                if os.path.isdir(os.path.join(os.path.realpath(profile_dir + '/chrome_backup'), file)):
+                    shutil.copytree(os.path.join(os.path.realpath(profile_dir + '/chrome_backup'), file), os.path.realpath(profile_dir + '/chrome/' + file))
                 else:
-                    shutil.copy(os.path.join(os.path.realpath(CONFIG_PATH + '/chrome_backup'), file), os.path.realpath(profile_dir + '/chrome' + file))
+                    shutil.copy(os.path.join(os.path.realpath(profile_dir + '/chrome_backup'), file), os.path.realpath(profile_dir + '/chrome/' + file))
             success("Completed Restore Process, Killing Firefox!")
             if check_for_process("firefox"):
                 if platform == "linux" or platform == "linux2" or platform == "darwin":
-                    subprocess.call(['kill', '-9', '$(ps -x | grep firefox)'], stdout=FNULL, stderr=subprocess.STDOUT)
+                    subprocess.call(['killall', 'firefox'], stdout=FNULL, stderr=subprocess.STDOUT)
                 elif platform == "win32":
                     subprocess.call(['taskkill', '/f', '/im', 'firefox.exe'], stdout=FNULL, stderr=subprocess.STDOUT)
                 success("Closed Firefox! Re-open to see your new theme!")
@@ -221,7 +221,7 @@ def clear():
     info("Attempting to Kill Firefox...")
     if check_for_process("firefox"):
         if platform == "linux" or platform == "linux2" or platform == "darwin":
-            subprocess.call(['kill', '-9', '$(ps -x | grep firefox)'], stdout=FNULL, stderr=subprocess.STDOUT)
+            subprocess.call(['killall', 'firefox'], stdout=FNULL, stderr=subprocess.STDOUT)
         elif platform == "win32":
             subprocess.call(['taskkill', '/f', '/im', 'firefox.exe'], stdout=FNULL, stderr=subprocess.STDOUT)
         success("Closed Firefox!")
@@ -256,7 +256,7 @@ def apply(theme_name):
         success("Applied Theme Closing Firefox...")
         if check_for_process("firefox"):
             if platform == "linux" or platform == "linux2" or platform == "darwin":
-                subprocess.call(['kill', '-9', '$(ps -x | grep firefox)'], stdout=FNULL, stderr=subprocess.STDOUT)
+                subprocess.call(['killall', 'firefox'], stdout=FNULL, stderr=subprocess.STDOUT)
             elif platform == "win32":
                 subprocess.call(['taskkill', '/f', '/im', 'firefox.exe'], stdout=FNULL, stderr=subprocess.STDOUT)
             success("Closed Firefox! Re-open to see your new theme!")

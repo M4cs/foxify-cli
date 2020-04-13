@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='foxify-cli',
-    version='1.0.1',
+    version='1.0.1-4',
     author='Max Bridgland',
     author_email='mabridgland@protonmail.com',
     description='Firefox Theme Manager Based on Spicetify',

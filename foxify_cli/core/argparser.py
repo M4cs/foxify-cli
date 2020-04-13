@@ -4,7 +4,7 @@ from foxify_cli.core.methods import (
     clear, backup, clear_backup,
     apply, themes, version,
     helpmenu, configpath, information,
-    update
+    update, restore
 )
 
 class ArgParser:
@@ -57,6 +57,8 @@ class ArgParser:
                     exit(1)
                 theme_name = self.args[self.args.index('apply') + 1]
                 apply(theme_name)
+            if "restore" == arg:
+                restore()
             if "themes" == arg:
                 themes()
             if "version" == arg:

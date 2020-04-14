@@ -68,6 +68,18 @@ cd foxify-cli
 python3 setup.py install
 ```
 
+### Adding Themes:
+
+Most themes are available as a GitHub repo. If the theme you'd like is a GitHub repo simply run:
+```
+git clone <url to repo> ~/.config/foxify/themes/<theme_name>
+```
+
+Otherwise you can download the files and add them to a folder inside the foxify directory. To see the directory's path run:
+```
+foxify themes
+```
+
 ### Using Foxify:
 
 Once you install Foxify you should now have access to the command `foxify`. This command will be what you will run before all arguments available. Below you can see the list of commands:

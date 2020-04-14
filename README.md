@@ -1,9 +1,12 @@
 <img src="https://mbcdn.sfo2.cdn.digitaloceanspaces.com/Foxify.png">
 
 # foxify-cli
-[![GitHub issues](https://img.shields.io/github/issues/M4cs/foxify-cli)](https://github.com/M4cs/foxify-cli/issues)
-[![GitHub stars](https://img.shields.io/github/stars/M4cs/foxify-cli)](https://github.com/M4cs/foxify-cli/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/M4cs/foxify-cli)](https://github.com/M4cs/foxify-cli/network/members)
+<p align="center">
+ <a href="https://pepy.tech/project/foxify-cli"><img src="https://pepy.tech/badge/foxify-cli" align="center"></a>
+ <a href="https://github.com/M4cs/foxify-cli/issues"><img src="https://img.shields.io/github/issues/M4cs/foxify-cli" align="center"></a>
+ <a href="https://github.com/M4cs/foxify-cli/stargazers"><img src="https://img.shields.io/github/stars/M4cs/foxify-cli" align="center"></a>
+ <a href="https://github.com/M4cs/foxify-cli/network/members"><img src="https://img.shields.io/github/forks/M4cs/foxify-cli" align="center"></a>
+</p>
 
 Customize Firefox from the command line and control all your custom userChrome CSS themes with one tool!
 

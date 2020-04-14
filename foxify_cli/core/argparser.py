@@ -4,7 +4,7 @@ from foxify_cli.core.methods import (
     clear, backup, clear_backup,
     apply, themes, getversion,
     helpmenu, configpath, information,
-    update, restore
+    update, restore, get, remove
 )
 
 class ArgParser:
@@ -14,7 +14,8 @@ class ArgParser:
             'backup', 'apply', 'update',
             'restore', 'clear', 'themes',
             'restart', 'help', 'version',
-            'backup-clear', 'config', 'info'
+            'backup-clear', 'config', 'info',
+            'get', 'remove'
         ]
         self.check_for_errors()
     
@@ -24,6 +25,12 @@ class ArgParser:
                 if self.args[self.args.index(arg) -1] == "apply":
                     pass
                 elif self.args[self.args.index(arg) -1] == "download":
+                    pass
+                elif self.args[self.args.index(arg) -1] == "get":
+                    pass
+                elif self.args[self.args.index(arg) -2] == "get":
+                    pass
+                elif self.args[self.args.index(arg) -1] == "remove":
                     pass
                 else:
                     self.get_matches(arg)
@@ -42,6 +49,14 @@ class ArgParser:
             
     def run_args(self):
         for arg in self.args:
+            if "remove" == arg:
+                remove(self.args[self.args.index('remove') + 1])
+            if "get" == arg:
+                if self.args[self.args.index('get') + 1] not in self.accepted_args:
+                    info("Using Custom Name To Download Theme:", )
+                    get(self.args[self.args.index('get') + 1], self.args[self.args.index('get') + 2])
+                else:
+                    get(self.args[self.args.index('get') + 1])
             if "clear" == arg:
                 clear()
             if "backup" == arg:

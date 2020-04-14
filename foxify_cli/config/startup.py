@@ -90,5 +90,12 @@ def startup():
                 yaml.dump(config, f)
         if config['check_for_updates']:
             res = requests.get('https://raw.githubusercontent.com/M4cs/foxify-cli/master/version').text
-            if config['version'] != res:
+            if res == version:
+                config['version'] = version
+                print(version)
+                with open(DEFAULT_CONFIG, 'w') as f:
+                    yaml = YAML()
+                    yaml.default_flow_style = False
+                    yaml.dump(config, f)
+            else:
                 info("Update Available! Run 'pip3 install --upgrade foxify-cli' to Update to Version: " + res)

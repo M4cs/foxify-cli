@@ -10,6 +10,16 @@ import zipfile
 import requests
 import shutil, os, psutil
 import subprocess
+from git import Repo
+
+def onerror(func, path, exc_info):
+    import stat
+    if not os.access(path, os.W_OK):
+        os.chmod(path, stat.S_IWUSR)
+        func(path)
+    else:
+        error("Couldn't Remove The File!")
+        exit(1)
 
 FNULL = open(os.devnull, 'w')
 
@@ -22,6 +32,40 @@ def check_for_process(process_name):
             pass
     return False
 
+def remove(name):
+    match = False
+    for file in os.listdir(os.path.realpath(CONFIG_PATH + '/themes/')):
+        if file == name:
+            match = True
+    if match:
+        info("Removing:", name)
+        shutil.rmtree(os.path.realpath(CONFIG_PATH + '/themes/' + name), onerror=onerror)
+        success("Removed Theme")
+    else:
+        error("No Theme By That Name Found. Run 'foxify themes' to see available themes!")
+
+def get(url, name=None):
+    url_split = url.split('/')
+    if not name:
+        name = url_split[-1].replace('.git', '')
+    should_grab = True
+    for file in os.listdir(os.path.realpath(CONFIG_PATH + '/themes/')):
+        if file == name:
+            warning("You already have this theme installed! Would you like to overwrite it? Y\\n")
+            while True:
+                ans = input("> ")
+                if ans.lower() == "y":
+                    info("Removing Old Theme...")
+                    shutil.rmtree(os.path.realpath(CONFIG_PATH + '/themes/' + name), onerror=onerror)
+                    break
+                elif ans.lower() == "n":
+                    should_grab = False
+                    break
+    if should_grab:
+        info('Attempting to Download Theme:', Fore.BLUE + name)
+        Repo.clone_from(url, os.path.realpath(CONFIG_PATH + '/themes/' + name))
+        success("Completed Theme Download")
+
 def getversion():
     info("Foxify v" + version)
     exit(0)
@@ -32,18 +76,19 @@ Available Commands:
 
 apply          -     Apply a theme based on the themes available
                      in your theme directory.
-              
+                                
 backup         -     Backup your current userChrome files to the
-                     backup directory.
-              
+                     backup directory.     
+                           
 backup-clear   -     Delete your current backup.
-
 
 clear          -     Remove the active theme on your Firefox profile.
 
+get            -     Get a theme with a GitHub URL.
+
+remove         -     Remove a theme from your theme directory.
 
 help           -     Display this help menu.
-
 
 restore        -     Restore your Firefox theme from a backup if one
                      exists for your active profile.
@@ -53,12 +98,9 @@ themes         -     See available themes in your theme directory and
                      
 update         -     Check for updates of Foxify from the remote repo.
 
-
 version        -     Display the current version of Foxify.
 
-
 config         -     Display config directory and current settings.
-
 
 info           -     Display info about Foxify and how to get themes.
           """)

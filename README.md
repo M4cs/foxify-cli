@@ -48,87 +48,24 @@ Foxify was heavily inspired by the command-line program [Spiceify for Spotify](h
   - Python 3.6+
   - Firefox 57 or Higher
   
-### Getting Started:
 
-**Installing Foxify:**
+<br><br><br><br>
 
-To install Foxify you can simply use the Python Pip package manager. 
+## [Wiki](https://github.com/M4cs/foxify-cli/wiki)
 
-Run:
-```
-pip3 install foxify-cli
-```
-*pip3 may throw an error if you only have python3 installed. in that case run `pip install foxify-cli`*
+#### I. [Table of Contents](https://github.com/M4cs/foxify-cli/wiki)
+#### II. [Overview](https://github.com/M4cs/foxify-cli/wiki/Overview)
+  1. [**Description**](https://github.com/M4cs/foxify-cli/wiki/Overview)
+  2. [**Features**](https://github.com/M4cs/foxify-cli/wiki/Overview)
+  3. [**Where to Find Themes**](https://github.com/M4cs/foxify-cli/wiki/Overview)
+  4. [**Requirements**](https://github.com/M4cs/foxify-cli/wiki/Overview)
 
-You can also install Foxify by cloning the GitHub repo and installing manually:
-
-```
-git clone https://github.com/M4cs/foxify-cli
-cd foxify-cli
-python3 setup.py install
-```
-
-### Adding Themes:
-
-Most themes are available as a GitHub repo. If the theme you'd like is a GitHub repo simply run:
-```
-git clone <url to repo> ~/.config/foxify/themes/<theme_name>
-```
-
-Otherwise you can download the files and add them to a folder inside the foxify directory. To see the directory's path run:
-```
-foxify themes
-```
-
-### Using Foxify:
-
-Once you install Foxify you should now have access to the command `foxify`. This command will be what you will run before all arguments available. Below you can see the list of commands:
-
-| Command | Description |
-| :--: | :--: |
-| apply [theme_name] | Apply a theme based on the themes available in your theme directory. |
-| backup | Backup your current userChrome files to the ackup directory. |
-| backup-clear | Delete the current backup. |
-| clear | Remove the active theme on your Firefox profile. |
-| help | Display the help menu. |
-| restore | Restore your Firefox theme from a backup if one exists for your active profile. |
-| themes | See path to theme directory and available themes. |
-| update | Check for updates of Foxify from the remote repo. |
-| version | Display the current version of Foxify. |
-| config | Display config directory and current settings. |
-| info | Display info about Foxify and how to get themes. |
-
-### Common Command Combinations:
-
-Backup and Apply a Theme:
-```
-foxify backup apply [theme_name]
-```
-
-Backup Active Theme:
-```
-foxify backup
-```
-
-Delete Backup:
-```
-foxify backup-clear
-```
-
-Restore From Backup:
-```
-foxify restore
-```
-
-Remove Active Theme:
-```
-foxify clear
-```
-
-Check Config Values:
-```
-foxify config
-```
+#### III. [Getting Started](https://github.com/M4cs/foxify-cli/wiki/Getting-Started)
+  1. [**Installation**](https://github.com/M4cs/foxify-cli/wiki/Getting-Started#installing-foxify)
+  2. [**Adding Themes**](https://github.com/M4cs/foxify-cli/wiki/Getting-Started#adding-themes)
+#### IV. [Usage](https://github.com/M4cs/foxify-cli/wiki/Usage)
+  1. [**Command List**](https://github.com/M4cs/foxify-cli/wiki/Usage)
+  2. [**Common Commands**](https://github.com/M4cs/foxify-cli/wiki/Usage#common-command-combinations)
 
 # License
 

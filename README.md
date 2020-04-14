@@ -11,6 +11,8 @@ Supports Windows, Mac, and Linux
 
 No Support For Waterfox
 
+[Troubleshooting Guide Can Be Found Here!](https://github.com/M4cs/foxify-cli/wiki/Troubleshooting)
+
 <p align="center">
  <p align="center"><img src="https://raw.githubusercontent.com/M4cs/foxify-cli/master/preview.gif" width="720"></p>
 </p>

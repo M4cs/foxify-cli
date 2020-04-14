@@ -1,4 +1,5 @@
 from foxify_cli.config.startup import CONFIG_PATH
+from foxify_cli import version
 from ruamel.yaml import YAML
 from foxify_cli.logger import info, success, warning, error
 from tqdm import tqdm
@@ -21,8 +22,8 @@ def check_for_process(process_name):
             pass
     return False
 
-def version():
-    info("Foxify v1.0.1")
+def getversion():
+    info("Foxify v" + version)
     exit(0)
     
 def helpmenu():
@@ -112,9 +113,9 @@ def information():
 ██╔══╝  ██║   ██║ ██╔██╗ ██║██╔══╝    ╚██╔╝  
 ██║     ╚██████╔╝██╔╝ ██╗██║██║        ██║   
 ╚═╝      ╚═════╝ ╚═╝  ╚═╝╚═╝╚═╝        ╚═╝""")
-    print("Version: 1.0.1")
-    print("Created by Max Bridgland <https://github.com/M4cs>")
-    print("Find More FirefoxCSS Themes At These Links:")
+    info("Version:", version)
+    info("Created by Max Bridgland <https://github.com/M4cs>")
+    info("Find More FirefoxCSS Themes At These Links:")
     print("https://www.reddit.com/r/FirefoxCSS/")
     print("https://github.com/Timvde/UserChrome-Tweaks")
     print("https://github.com/MrOtherGuy/firefox-csshacks")
@@ -139,12 +140,13 @@ def clear_backup():
         warning("Skipping Backup Clearing")
         
 def update():
-    res = requests.get('https://raw.githubusercontent.com/M4cs/foxify-cli/master/version').content
     with open(CONFIG_PATH + '/config', 'r') as f:
         yaml = YAML(typ='safe')
         config = yaml.load(f)
-        if config['version'] != res:
-            info("Update Available! Run 'pip3 install --upgrade foxify-cli' to Update to Version: " + res)
+        if not config['check_for_updates']:
+            res = requests.get('https://raw.githubusercontent.com/M4cs/foxify-cli/master/version').text
+            if config['version'] != res:
+                info("Update Available! Run 'pip3 install --upgrade foxify-cli' to Update to Version: " + res)
         
 
 def restore():

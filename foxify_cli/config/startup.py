@@ -1,4 +1,5 @@
-import os
+import os, requests
+from foxify_cli import version
 from foxify_cli.logger import info
 from ruamel.yaml import YAML
 
@@ -9,7 +10,9 @@ DCONF = {
     "active_theme": "default",
     "active_profile": "",
     "theme_directory": DEFAULT_THEME_PATH,
-    "version": "1.0.0"
+    "version": version,
+    "config_version": 1,
+    "check_for_updates": True
 }
 
 def startup():
@@ -65,3 +68,27 @@ def startup():
                 break
             else:
                 pass
+    else:
+        with open(DEFAULT_CONFIG, 'r') as f:
+            yaml = YAML(typ='safe')
+            config = yaml.load(f)
+        if not config.get('config_version'):
+            for k, v in DCONF.items():
+                if not config.get(k):
+                    config[k] = v
+            with open(DEFAULT_CONFIG, 'w') as f:
+                yaml = YAML()
+                yaml.default_flow_style = False
+                yaml.dump(config, f)
+        if config['config_version'] != 1:
+            for k, v in DCONF.items():
+                if not config.get(k):
+                    config[k] = v
+            with open(DEFAULT_CONFIG, 'w') as f:
+                yaml = YAML()
+                yaml.default_flow_style = False
+                yaml.dump(config, f)
+        if config['check_for_updates']:
+            res = requests.get('https://raw.githubusercontent.com/M4cs/foxify-cli/master/version').text
+            if config['version'] != res:
+                info("Update Available! Run 'pip3 install --upgrade foxify-cli' to Update to Version: " + res)

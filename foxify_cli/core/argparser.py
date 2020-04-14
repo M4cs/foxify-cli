@@ -2,7 +2,7 @@ from foxify_cli.logger import error, info
 from fuzzywuzzy import fuzz, process
 from foxify_cli.core.methods import (
     clear, backup, clear_backup,
-    apply, themes, version,
+    apply, themes, getversion,
     helpmenu, configpath, information,
     update, restore
 )
@@ -62,7 +62,7 @@ class ArgParser:
             if "themes" == arg:
                 themes()
             if "version" == arg:
-                version()
+                getversion()
             if "help" == arg:
                 helpmenu()
             if "config" == arg:

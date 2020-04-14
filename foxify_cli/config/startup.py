@@ -92,7 +92,6 @@ def startup():
             res = requests.get('https://raw.githubusercontent.com/M4cs/foxify-cli/master/version').text
             if res == version:
                 config['version'] = version
-                print(version)
                 with open(DEFAULT_CONFIG, 'w') as f:
                     yaml = YAML()
                     yaml.default_flow_style = False

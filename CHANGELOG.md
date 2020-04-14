@@ -1,3 +1,7 @@
+# Update 1.1:
+
+- Add `get` and `remove` commands
+
 # Update 1.0.2:
 
 - Fix Update Command

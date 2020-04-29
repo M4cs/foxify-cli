@@ -6,12 +6,16 @@ from ruamel.yaml import YAML
 CONFIG_PATH = os.path.realpath(os.path.expanduser('~') + "/.config/foxify")
 DEFAULT_THEME_PATH = os.path.realpath(CONFIG_PATH + "/themes/")
 DEFAULT_CONFIG = os.path.realpath(CONFIG_PATH + "/config")
+DEFAULT_TWEAK_PATH = os.path.realpath(CONFIG_PATH + "/tweaks/")
+CONFIG_VERSION = 2
+
 DCONF = {
     "active_theme": "default",
     "active_profile": "",
     "theme_directory": DEFAULT_THEME_PATH,
     "version": version,
-    "config_version": 1,
+    "config_version": CONFIG_VERSION,
+    "active_tweaks": [],
     "check_for_updates": True
 }
 
@@ -19,7 +23,10 @@ def startup():
     if not os.path.exists(CONFIG_PATH):
         info("Foxify Directory Missing! Creating One For You...")
         os.makedirs(CONFIG_PATH)
+    if not os.path.exists(DEFAULT_THEME_PATH):
         os.makedirs(DEFAULT_THEME_PATH)
+    if not os.path.exists(DEFAULT_TWEAK_PATH):
+        os.makedirs(DEFAULT_TWEAK_PATH)
     if not os.path.exists(DEFAULT_CONFIG):
         while True:
             info("If you have not yet setup userChrome CSS Cusotmization\nPlease Open Up Your Firefox Browser and Follow These Steps:")
@@ -80,7 +87,7 @@ def startup():
                 yaml = YAML()
                 yaml.default_flow_style = False
                 yaml.dump(config, f)
-        if config['config_version'] != 1:
+        if config['config_version'] != CONFIG_VERSION:
             for k, v in DCONF.items():
                 if not config.get(k):
                     config[k] = v

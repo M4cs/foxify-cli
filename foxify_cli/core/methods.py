@@ -1,4 +1,4 @@
-from foxify_cli.config.startup import CONFIG_PATH
+from foxify_cli.config.startup import CONFIG_PATH, DEFAULT_TWEAK_PATH
 from foxify_cli import version
 from ruamel.yaml import YAML
 from foxify_cli.logger import info, success, warning, error
@@ -6,11 +6,52 @@ from tqdm import tqdm
 from time import sleep
 from colorama import Fore, Style
 from sys import platform
+from webbrowser import open_new_tab
 import zipfile
 import requests
 import shutil, os, psutil
 import subprocess
 from git import Repo
+
+from fuzzywuzzy import process
+
+def get_matches(tweak_name, path):
+        matches = process.extractBests(tweak_name, os.listdir(path))
+        if not matches:
+            error("Unknown Tweak Name:", tweak_name)
+        else:
+            m = []
+            for match in matches:
+                m.append(match[0])
+            error("Unknown Tweak Name:", tweak_name)
+            if len(m) > 0:
+                info("Possible Matches:", ', '.join(m))
+
+def get_tweaks():
+    info("Attempting To Open: https://github.com/Timvde/UserChrome-Tweaks")
+    open_new_tab("https://github.com/Timvde/UserChrome-Tweaks")
+
+def tweak_apply(tweak_name):
+    match = False
+    for file in os.listdir(DEFAULT_TWEAK_PATH):
+        if file == tweak_name:
+            if os.path.isdir(os.path.realpath(DEFAULT_TWEAK_PATH + "/" +tweak_name)) and os.path.exists(os.path.realpath(DEFAULT_TWEAK_PATH + "/" + tweak_name)):
+                match = True
+    if not match:
+        get_matches(tweak_name, os.path.realpath(DEFAULT_TWEAK_PATH))
+        exit(1)
+    info("Applying Tweak")
+    
+def tweaks():
+    tweaks = []
+    for file in os.listdir(os.path.realpath(CONFIG_PATH + "/tweaks")):
+        if os.path.isdir(os.path.realpath(CONFIG_PATH + "/tweaks/" + file)):
+            tweaks.append(file)
+    info("Tweak Directory:", os.path.realpath(CONFIG_PATH + "/tweaks"))
+    if len(tweaks) > 0:
+        info("Available Tweaks:", ', '.join(tweaks))
+    else:
+        info("Currently No Tweaks. Get Some By Using The 'foxify get tweaks' Command!")
 
 def onerror(func, path, exc_info):
     import stat

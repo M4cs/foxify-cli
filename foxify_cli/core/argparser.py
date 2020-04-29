@@ -4,12 +4,14 @@ from foxify_cli.core.methods import (
     clear, backup, clear_backup,
     apply, themes, getversion,
     helpmenu, configpath, information,
-    update, restore, get, remove
+    update, restore, get, remove,
+    tweak_apply, tweaks, get_tweaks
 )
 
 class ArgParser:
     def __init__(self, args):
         self.args = args
+        self.is_tweak_cmd = False
         self.accepted_args = [
             'backup', 'apply', 'update',
             'restore', 'clear', 'themes',
@@ -22,7 +24,7 @@ class ArgParser:
     def check_for_errors(self):
         for arg in self.args:
             if arg not in self.accepted_args:
-                if self.args[self.args.index(arg) -1] == "apply":
+                if self.args[self.args.index(arg) - 1] == "apply":
                     pass
                 elif self.args[self.args.index(arg) -1] == "download":
                     pass
@@ -52,13 +54,25 @@ class ArgParser:
             if "remove" == arg:
                 remove(self.args[self.args.index('remove') + 1])
             if "get" == arg:
-                if self.args[self.args.index('get') + 1] not in self.accepted_args:
-                    info("Using Custom Name To Download Theme:", )
-                    get(self.args[self.args.index('get') + 1], self.args[self.args.index('get') + 2])
+                if self.args[self.args.index('get') + 1] == "tweaks":
+                    get_tweaks()
                 else:
-                    get(self.args[self.args.index('get') + 1])
+                    if self.args[self.args.index('get') + 1] not in self.accepted_args:
+                        if self.args[self.args.index('get') + 1].startswith('http') or self.args[self.args.index('get') + 1].startswith('git'):
+                            if self.args[self.args.index('get') + 2] not in self.accepted_args:
+                                get(self.args[self.args.index('get') + 1], self.args[self.args.index('get') + 2])
+                            else:
+                                get(self.args[self.args.index('get') + 1])
+                        else:
+                            error("Malformed URL. Please Use An http(s):// or git:// URL")
+                            exit(1)
+                    else:
+                        error("Missing URL or Correct Commands Afterwards")
             if "clear" == arg:
                 clear()
+            if "tweaks" == arg:
+                if self.args[self.args.index('tweaks') - 1] != 'get':
+                    tweaks()
             if "backup" == arg:
                 backup()
             if "backup-clear" == arg:

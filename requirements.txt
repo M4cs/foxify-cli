@@ -4,5 +4,5 @@ fuzzywuzzy==0.18.0
 requests==2.20.1
 psutil==5.6.2
 ruamel.base==1.0.0
-gitpython==3.0.5
+gitpython==3.1.32
 python-Levenshtein==0.12.0 
